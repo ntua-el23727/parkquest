@@ -5,6 +5,7 @@ import 'package:logging/logging.dart';
 import 'package:parkquest/widgets/group_button.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:parkquest/data/user_manager.dart';
 
 final Logger _logger = Logger('LocationSaved');
 
@@ -41,16 +42,25 @@ Future<void> savedCarParkLocation(Position position) async {
   try {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     await preferences.setDouble('latitude', position.latitude);
-    await preferences.setDouble('longitude', position.longitude);
+    await preferences. setDouble('longitude', position.longitude);
     await preferences.setBool('isLocationSaved', true);
     await preferences.setString(
       'saved_timestamp',
-      DateTime.now().toIso8601String(),
+      DateTime. now().toIso8601String(),
     );
-    _logger.info('Location saved: ${position.latitude}, ${position.longitude}');
+    _logger.info('Location saved:  ${position.latitude}, ${position.longitude}');
+    
+    // Καταγραφή στο history
+    final userManager = UserManager();
+    await userManager.load();
+    await userManager.addPoints(
+      0,
+      "Parked car",
+      "Lat: ${position.latitude. toStringAsFixed(4)}, Lng: ${position.longitude.toStringAsFixed(4)}",
+    );
   } catch (e) {
-    _logger.severe('Error saving location: $e');
-    throw e; // Re-throw so the UI can handle the error
+    _logger. severe('Error saving location: $e');
+    rethrow;
   }
 }
 

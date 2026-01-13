@@ -8,6 +8,7 @@ import 'package:parkquest/pages/main_page.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:logging/logging.dart';
 import 'dart:io';
+import 'package:parkquest/data/user_manager.dart';
 
 import 'dart:math';
 
@@ -417,72 +418,67 @@ class _DirectionMapState extends State<DirectionMap> {
                               );
                             },
                           ),
-                          TextButton(
-                            style: TextButton.styleFrom(
-                              foregroundColor: Colors.black,
-                              backgroundColor: const Color(0xFF90E0EF),
-                            ),
-                            child: const Text('Share'),
-                            onPressed: () {
-                              // _carSavedPosition is still available here for sharing
-                              Navigator.of(dialogContext).pop();
-                              showDialog(
-                                context: context,
-                                barrierDismissible: false,
-                                builder: (dialogContext2) => AlertDialog(
-                                  backgroundColor: Theme.of(
-                                    context,
-                                  ).primaryColor,
-                                  title: const Text('Points Earned!'),
-                                  content: const SingleChildScrollView(
-                                    child: ListBody(
-                                      children: <Widget>[
-                                        Text(
-                                          'Great Job! You have earned 5 Points!',
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                  actions: <Widget>[
-                                    TextButton(
-                                      style: TextButton.styleFrom(
-                                        foregroundColor: Colors.black,
-                                        backgroundColor: const Color(
-                                          0xFF90E0EF,
-                                        ),
-                                      ),
-                                      child: const Text('Get back home'),
-                                      onPressed: () async {
-                                        // Clear saved location data
-                                        SharedPreferences prefs =
-                                            await SharedPreferences.getInstance();
-                                        await prefs.remove('latitude');
-                                        await prefs.remove('longitude');
-                                        await prefs.setBool(
-                                          'isLocationSaved',
-                                          false,
-                                        );
-                                        await prefs.remove('saved_timestamp');
-                                        await prefs.remove('parkingNote');
-                                        await prefs.remove('parkingPhotoPath');
+TextButton(
+  style: TextButton.styleFrom(
+    foregroundColor: Colors. black,
+    backgroundColor:  const Color(0xFF90E0EF),
+  ),
+  child: const Text('Share'),
+  onPressed: () async {
+    // Προσθήκη 5 πόντων στον χρήστη
+    final userManager = UserManager();
+    await userManager.addPoints(
+      5,
+      "Shared car location",
+      "Lat: ${_carSavedPosition?. latitude}, Lng: ${_carSavedPosition?.longitude}",
+    );
 
-                                        if (mounted) {
-                                          Navigator.of(dialogContext2).pop();
-                                          Navigator.pushReplacement(
-                                            context,
-                                            MaterialPageRoute(
-                                              builder: (context) =>
-                                                  const MainPage(),
-                                            ),
-                                          );
-                                        }
-                                      },
-                                    ),
-                                  ],
-                                ),
-                              );
-                            },
-                          ),
+    if (! mounted) return;
+
+    Navigator.of(dialogContext).pop();
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (dialogContext2) => AlertDialog(
+        backgroundColor: Theme.of(context).primaryColor,
+        title: const Text('Points Earned! '),
+        content: const SingleChildScrollView(
+          child: ListBody(
+            children:  <Widget>[
+              Text('Great Job! You have earned 5 Points!'),
+            ],
+          ),
+        ),
+        actions: <Widget>[
+          TextButton(
+            style: TextButton.styleFrom(
+              foregroundColor: Colors. black,
+              backgroundColor: const Color(0xFF90E0EF),
+            ),
+            child:  const Text('Get back home'),
+            onPressed: () async {
+              SharedPreferences prefs = await SharedPreferences. getInstance();
+              await prefs.remove('latitude');
+              await prefs.remove('longitude');
+              await prefs.setBool('isLocationSaved', false);
+              await prefs. remove('saved_timestamp');
+              await prefs.remove('parkingNote');
+              await prefs.remove('parkingPhotoPath');
+
+              if (mounted) {
+                Navigator.of(dialogContext2).pop();
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(builder: (context) => const MainPage()),
+                );
+              }
+            },
+          ),
+        ],
+      ),
+    );
+  },
+),
                         ],
                       ),
                     );
