@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
 import 'package:parkquest/pages/location_saved.dart';
-import 'package:parkquest/pages/direction_maps shared.dart';
+import 'package:parkquest/pages/direction_maps_shared.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:logging/logging.dart';
 import 'package:parkquest/data/parked_car.dart';

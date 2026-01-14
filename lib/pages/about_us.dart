@@ -9,92 +9,79 @@ class AboutUs extends StatefulWidget {
 }
 
 class _AboutUsState extends State<AboutUs> {
-  bool isTestingFlagEnabled = false; // Use non-nullable with default value
+  bool isTestingFlagEnabled = false; 
 
   @override
   void initState() {
     super.initState();
-    _testingStatus();
+    _getTestingStatus();
   }
 
-  Future<void> _testingStatus() async {
-    SharedPreferences preferences = await SharedPreferences.getInstance();
+  Future<void> _getTestingStatus() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
     setState(() {
-      isTestingFlagEnabled =
-          preferences.getBool('isTestingFlagEnabled') ?? false;
+      isTestingFlagEnabled = prefs.getBool('isTestingFlagEnabled') ?? false;
     });
   }
 
-  Future<void> saveBool() async {
-    SharedPreferences preferences = await SharedPreferences.getInstance();
-    await preferences.setBool('isTestingFlagEnabled', isTestingFlagEnabled);
-    //print(isTestingFlagEnabled);
+  Future<void> _saveTestingStatus() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setBool('isTestingFlagEnabled', isTestingFlagEnabled);
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('About Us')),
-      body: Column(
-        children: [
-          Center(
-            child: Padding(
-              padding: const EdgeInsets.all(20.0),
-              child: Column(
-                children: [
-                  Text(
-                    'This is a University Project developed by Team 80.',
-                    style: TextStyle(fontSize: 24),
-                  ),
-                  SizedBox(height: 50),
-                  Text(
-                    'Team Members:\n- Σταύρος Ποντίκης (03123727)\n- Παναγιώτης Τσακλάνος (03118937)\n',
-                    style: TextStyle(fontSize: 18),
-                  ),
-                  Divider(
-                    thickness: 2,
-                    indent: 20,
-                    endIndent: 20,
-                    color: Colors.black,
-                  ),
-                  SizedBox(height: 20),
-                  Text(
-                    'To test the app please use the toggle below to pretend that you have parked your car.',
-                    style: TextStyle(fontSize: 18),
-                  ),
-                  SizedBox(height: 20),
-                  Switch(
-                    value: isTestingFlagEnabled, // Shows current state
-                    onChanged: (value) {
-                      setState(() {
-                        isTestingFlagEnabled = value; // Update the variable
-                      });
-                      saveBool(); // Save it permanently
-                    },
-                  ),
-                ],
-              ),
+      appBar: AppBar(title: const Text('About Us')),
+      body: Padding(
+        padding: const EdgeInsets.all(20.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            const Text(
+              'This is a University Project developed by Team 80.',
+              textAlign: TextAlign.center,
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
-          ),
-          Expanded(
-            child: SizedBox(
-              child: Center(
-                child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    padding: EdgeInsets.symmetric(horizontal: 30, vertical: 15),
-                    textStyle: TextStyle(fontSize: 18),
-                    foregroundColor: Colors.white,
-                    backgroundColor: Theme.of(context).primaryColor,
-                  ),
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
-                  child: Text('Back to Main Page'),
-                ),
-              ),
+            const SizedBox(height: 40),
+            const Text(
+              'Team Members:',
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
-          ),
-        ],
+            const SizedBox(height: 10),
+            const Text('- Σταύρος Ποντίκης (03123727)', style: TextStyle(fontSize: 16)),
+            const Text('- Παναγιώτης Τσακλάνος (03118937)', style: TextStyle(fontSize: 16)),
+            const SizedBox(height: 40),
+            const Divider(thickness: 1.5),
+            const SizedBox(height: 20),
+            const Text(
+              'To test the app, use the toggle below to pretend that you have parked your car.',
+              textAlign: TextAlign.center,
+              style: TextStyle(fontSize: 18),
+            ),
+            const SizedBox(height: 20),
+            Switch(
+              value: isTestingFlagEnabled, 
+              onChanged: (value) {
+                setState(() {
+                  isTestingFlagEnabled = value;
+                });
+                _saveTestingStatus(); 
+              },
+            ),
+            const SizedBox(height: 40),
+            ElevatedButton(
+              onPressed: () => Navigator.pop(context),
+              style: ElevatedButton.styleFrom(
+                padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 15),
+                backgroundColor: Theme.of(context).primaryColor,
+                textStyle: const TextStyle(fontSize: 18),
+                foregroundColor: Colors.white,
+              ),
+              child: const Text('Back to Main Page'),
+            ),
+          ],
+        ),
       ),
     );
   }

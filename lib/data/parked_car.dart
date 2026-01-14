@@ -8,6 +8,7 @@ class ParkedCar {
   final String? imagePath;
   final DateTime leftAt;
   final bool sharedPosition;
+  final double? distance; 
 
   ParkedCar({
     required this.id,
@@ -19,6 +20,7 @@ class ParkedCar {
     this.imagePath,
     required this.leftAt,
     this.sharedPosition = false,
+    this.distance, 
   });
 
   ParkedCar copyWith({
@@ -31,6 +33,7 @@ class ParkedCar {
     String? imagePath,
     DateTime? leftAt,
     bool? sharedPosition,
+    double? distance,
   }) {
     return ParkedCar(
       id: id ?? this.id,
@@ -42,6 +45,7 @@ class ParkedCar {
       imagePath: imagePath ?? this.imagePath,
       leftAt: leftAt ?? this.leftAt,
       sharedPosition: sharedPosition ?? this.sharedPosition,
+      distance: distance ?? this.distance,
     );
   }
 
@@ -55,6 +59,7 @@ class ParkedCar {
       'note': note,
       'imagePath': imagePath,
       'leftAt': leftAt.toIso8601String(),
+    
     };
   }
 
