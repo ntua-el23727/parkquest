@@ -59,18 +59,13 @@
 git clone [repository-url]
 ```
 
-#### 2. Απόκτηση Google Maps API Key
+#### 2. Google Maps API Key
 
-Η εφαρμογή χρειάζεται Google Maps API Key για να λειτουργήσει. Η έκδοση του γίνεται μέσω του [Google Cloud Console](https://console.cloud.google.com/)
+Η εφαρμογή χρειάζεται Google Maps API Key για να λειτουργήσει. [Google Cloud Console](https://console.cloud.google.com/)
 
 #### 3. Ρύθμιση API Keys
 
-1. Αντιγράψτε το αρχείο `.env.example` σε `.env`:
-```bash
-cp .env.example .env
-```
-
-2. Προσθέστε το API key σας:
+Προσθέστε το API key στα παρακάτω αρχεία:
    - `.env`: `GOOGLE_MAPS_API_KEY=YOUR_KEY`
    - `android/local.properties`: `GOOGLE_MAPS_API_KEY=YOUR_KEY`
 
