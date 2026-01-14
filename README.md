@@ -1,4 +1,4 @@
-# 🚗 ParkQuest
+# ParkQuest
 
 ## Overview
 
@@ -7,18 +7,43 @@
 ## Features / Χαρακτηριστικά
 
 ### Core Features
+- **Main Application Page**: Home screen with shared parking spots carousel
+  
+  <div align="center">
+    <img src="assets/images/App%20Screenshots/Main%20Application%20page.png" width="150">
+  </div>
+
 - **Save Parking Location**: Instantly save your current location with GPS coordinates
+  
+  <div align="center">
+    <img src="assets/images/App%20Screenshots/Location%20Saved.png" width="150">
+  </div>
+
 - **Find My Car**: Get navigation back to your parked vehicle using Google Maps Routes API
-- **Parking Notes**: Add custom notes about your parking spot (e.g., "Level 3, near elevator")
-- **Photo Attachment**: Take a photo of your parking location for easy visual reference
+  
+  <div align="center">
+    <img src="assets/images/App%20Screenshots/Directions.png" width="150">
+  </div>
+
+- **Parking Notes**: Add custom notes about your parking spot
+
 - **Shared Parking Spots**: Discover available parking spots shared by other users nearby
+  
+  <div align="center">
+    <img src="assets/images/App%20Screenshots/Profile%20Shared%20Spots.png" width="150">
+  </div>
+
 - **Rewards System**: Earn points for parking activities and unlock rewards
+
 - **Activity History**: Track all your parking events with detailed history
-- **User Profile**: Manage your account, view points, and access rewards
+  
+  <div align="center">
+    <img src="assets/images/App%20Screenshots/Profile%20History.png" width="150">
+  </div>
 
 ---
 
-## 📱 Οδηγίες Εγκατάστασης / Installation Instructions
+## Οδηγίες Εγκατάστασης / Installation Instructions
 
 ### Προαπαιτούμενα / Prerequisites
 - **Flutter SDK**: Version 3.10.1 ή νεότερο / or newer
@@ -32,8 +57,6 @@
 ```bash
 # Clone the repository (if available on GitHub)
 git clone [repository-url]
-
-# Ή download και extract το ZIP file από το repository
 ```
 
 #### 2. Απόκτηση Google Maps API Key
