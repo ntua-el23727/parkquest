@@ -70,10 +70,9 @@ git clone [repository-url]
 cp .env.example .env
 ```
 
-2. Ανοίξτε το `.env` και προσθέστε το API key σας:
-```env
-GOOGLE_MAPS_API_KEY=YOUR_API_KEY_HERE
-```
+2. Προσθέστε το API key σας:
+   - `.env`: `GOOGLE_MAPS_API_KEY=YOUR_KEY`
+   - `android/local.properties`: `GOOGLE_MAPS_API_KEY=YOUR_KEY`
 
 #### 4. Εγκατάσταση Dependencies
 ```bash
@@ -86,6 +85,11 @@ flutter pub get
 # Για Android device ή emulator
 flutter run
 ```
+
+## Εύκολη εγκατάσταση
+
+**APK Download**
+1. Εγκατάσταση APK σε Android συσκευή: [Parkquest.apk](https://mega.nz/file/YFsxWYYb#kUKBDWg_CnPbM-rPl-WPlGMjEB3WoAHlN7yEPIxmcMs)
 
 ### Πρώτη Χρήση / First Time Use
 
