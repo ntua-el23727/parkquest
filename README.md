@@ -1,6 +1,10 @@
 # ParkQuest 
 ## Github Link: https://github.com/ntua-el23727/parkquest
 
+# Ομάδα εργαστηρίου: Team 80
+- *Σταύρος Ποντίκης (03123727)*
+- *Παναγιώτης Τσακλάνος (03118937)*
+
 ## Overview
 
 **ParkQuest** is a smart parking management application that helps users save, remember, and navigate back to their parked car location. The app integrates with Google Maps to provide navigation, allows users to add notes and photos to their parking spots, and has a community that shares parking spots in the app. Users can earn points through parking activities and unlock rewards like free coffee, gift cards, and parking vouchers.
