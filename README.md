@@ -81,17 +81,16 @@ flutter pub get
 flutter run
 ```
 
-## Εύκολη εγκατάσταση
+## Εύκολη εγκατάσταση / Easy Installation
 
-**APK Download**
-1. Εγκατάσταση APK σε Android συσκευή: [Parkquest.apk](https://mega.nz/file/YFsxWYYb#kUKBDWg_CnPbM-rPl-WPlGMjEB3WoAHlN7yEPIxmcMs)
+### APK Download
+Κατεβάστε και εγκαταστήστε το APK απευθείας στη συσκευή σας Android:
+- [Download ParkQuest APK](assets/application/parkquest.apk)
 
-### Πρώτη Χρήση / First Time Use
+### Βίντεο Επίδειξης / App Demo Recording
+Δείτε ένα demo της εφαρμογής ParkQuest:
+- [View Demo Video](assets/application/parkquest_demo_recording.mp4)
 
-1. **Επιτρέψτε την πρόσβαση στην τοποθεσία (GPS)** όταν σας ζητηθεί
-2. Η εφαρμογή είναι έτοιμη προς χρήση άμεσα
-
----
 
 ## 🔧 Τεχνικές Απαιτήσεις / Technical Requirements
 
